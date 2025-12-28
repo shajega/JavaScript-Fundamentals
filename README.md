@@ -1,6 +1,6 @@
-# CPAN-113 – Fundamentals of JavaScript
+# Fundamentals of JavaScript
 
-This repository contains the complete instructional structure for CPAN-113: Fundamentals of JavaScript.
+This repository contains the complete instructional structure for JavaScript Fundamentals.
 
 The course introduces students to core JavaScript programming concepts through a carefully scaffolded, week-by-week progression supported by labs, assignments, a group project, a midterm exam, and a final exam.
 
