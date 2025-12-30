@@ -32,9 +32,9 @@ isStudent = false; // Not allowed
 const isStudent = false; // Not allowed within the same scope 
  
 
-Basic Operators: 
-Arithmetic Operators: 
-+ (addition), - (subtraction), * (multiplication), / (division), % (modulus) 
+## Basic Operators: 
+### Arithmetic Operators: 
+- + (addition), - - (subtraction), * (multiplication), / (division), % (modulus) 
 Example: 
 let x = 10; 
 let y = 5; 
