@@ -1,9 +1,10 @@
-Variables and Basic Operators 
-Objective: 
+#Variables and Basic Operators 
+
+##Objective: 
 Understand how to declare variables and use basic operators in JavaScript. 
 
-Declaring Variables: 
-var: 
+##Declaring Variables: 
+###var: 
 Function-scoped. 
 Can be re-declared and updated. 
 Example: 
@@ -12,7 +13,7 @@ name = "Bob"; // Allowed
 var name = "Charlie"; // Allowed 
  
 
-let: 
+###let: 
 Block-scoped. 
 Can be updated but not re-declared within the same scope. 
 Example: 
@@ -21,7 +22,7 @@ age = 30; // Allowed
 let age = 35; // Not allowed within the same scope 
 
 
-const: 
+###const: 
 Block-scoped. 
 Cannot be updated or re-declared. 
 Must be initialized at the time of declaration. 
