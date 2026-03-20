@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events and Type of Event Handlers</title>
+</head>
+<body>
+
+    <!-- Inline Event Handler -->
+    <button id="changeBg" onclick="changeBgColor()">Change Background Color</button>
+
+    <!-- JavaScript Event Handler -->
+    <button id="resetBg" >Reset Background Color</button>
+
+    <script>
+        // Inline event handler function
+        function changeBgColor(){
+            document.body.style.backgroundColor = 'salmon';
+        }
+
+        // Javascript event handler & function
+        const resetBgButton = document.getElementById('resetBg');
+        resetBgButton.addEventListener('click', resetBgColor);
+        function resetBgColor(){
+            document.body.style.backgroundColor = "";
+        }
+    </script>
+</body>
+</html>
