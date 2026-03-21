@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load Events</title>
+</head>
+<!-- Inline Event Handler -->
+<body onload="console.log('page loading complete.');">
+    <h1>Load Event Test</h1>
+    <img src="nonexistent.jpg" alt="This image will fail to load." 
+    onerror="console.log('Inline Method says failed to load image.');">
+
+    <script>
+        // JavaScript Event Handlers
+        window.addEventListener('load', function(){
+            document.querySelector('h1').textContent = "Page fully loaded!";
+            console.log('addEventListner: Page fully loaded ')
+        });
+    </script>
+    
+</body>
+</html>
