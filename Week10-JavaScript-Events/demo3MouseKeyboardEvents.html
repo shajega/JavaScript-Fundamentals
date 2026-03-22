@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <label for="item">Enter an item: </label>
+    <input type="text" id="item">
+    <ul id="uList">
+    </ul>
+    
+    <button id="addItem">Add Item</button>
+    <button id="removeItem">Remove Last Item</button>
+    <button id="clearAll">Clear All</button>
+
+    <script>
+        let textBox = document.getElementById('item');
+        let list = document.getElementById('uList');
+        
+        textBox.addEventListener('keypress', function(e){
+            if(e.key === 'Enter') {
+                addListItem();
+            }
+        });
+
+        document.getElementById('addItem').addEventListener('click',addListItem);
+
+        document.getElementById('removeItem').addEventListener('click', function(){
+            list.removeChild(list.lastElementChild);
+        });
+
+        document.getElementById('clearAll').addEventListener('click', function(){
+            list.innerHTML = '';
+        });
+
+
+        function addListItem(){
+
+            let value = textBox.value.trim();
+
+            if (value === "") {
+                alert("Please enter an item before adding.")
+                return;
+            }
+            let listItem = document.createElement('li');
+            listItem.textContent = value;
+            textBox.value = "";
+            list.appendChild(listItem)
+        }
+        
+    </script>
+    
+</body>
+</html>
