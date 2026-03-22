@@ -17,6 +17,15 @@
             document.querySelector('h1').textContent = "Page fully loaded!";
             console.log('addEventListner: Page fully loaded ')
         });
+        //document.getElementsByTagName('img')[0]
+        // window.addEventListener('error', ()=>{
+        //     console.log("There is an error on the page.");
+        // });
+
+        window.addEventListener('error', (e)=>{
+            console.log("Resource failed: ", e.target);
+        }, true);
+
     </script>
     
 </body>

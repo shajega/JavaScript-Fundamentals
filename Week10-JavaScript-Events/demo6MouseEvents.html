@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let circle = {x:250, y:250, radius:10, color:'#000000'};
+        isDragging = false;
+
+        function drawCircle(){
+            ctx.beginPath();
+            ctx.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+            ctx.fillStyle = circle.color;
+            ctx.fill();
+        }
+
+        drawCircle();
+
+        canvas.addEventListener('mousedown', function(e){
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
+
+            const distance = Math.sqrt((mouseX - circle.x) ** 2 + (mouseY - circle.y) ** 2);
+            if (distance <= circle.radius) {
+                isDragging = true
+            }
+        });
+
+        canvas.addEventListener('mousemove', function(e){
+            if(isDragging){
+                const rect = canvas.getBoundingClientRect();
+                const mouseX = e.clientX - rect.left;
+                const mouseY = e.clientY - rect.top;
+
+                circle.x = mouseX;
+                circle.y = mouseY;
+
+                drawCircle();
+            }
+        });
+
+        canvas.addEventListener('mouseup',function(){
+            isDragging = false;
+        })
+    </script>
+    
+</body>
+</html>
