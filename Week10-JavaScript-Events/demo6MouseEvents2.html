@@ -3,40 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Canvas Drawing App</title>
+
+    <style>
+        #myCanvas {
+            border: 2px solid black;
+        }
+    </style>
 </head>
+
 <body>
+
+    <!-- Canvas -->
     <canvas id="myCanvas" width="800" height="600"></canvas>
 
+    <!-- Controls -->
+    <br>
+    <label for="colorPicker">Pen Color</label>
+    <input type="color" id="colorPicker" value="#000000">
+
+    <br>
+    <label for="sizeSlider">Line Thickness</label>
+    <input type="range" id="sizeSlider" min="1" max="10" value="3">
+
+    <br>
+    <button id="saveBtn">Save as PNG</button>
+    <button id="clearBtn">Clear</button>
+
     <script>
+        // -----------------------------
+        // Canvas Setup
+        // -----------------------------
         const canvas = document.getElementById('myCanvas');
         const ctx = canvas.getContext('2d');
-        isDragging = false;
 
-        canvas.addEventListener('mousedown', function(){
+        let isDragging = false;
+        let line = {
+            thickness: 3,
+            penTip: 'round',
+            color: 'black'
+        };
+
+        setBackgroundColor();
+
+
+        // -----------------------------
+        // Drawing Events
+        // -----------------------------
+        canvas.addEventListener('mousedown', () => {
             isDragging = true;
             ctx.beginPath();
         });
 
-        canvas.addEventListener('mousemove', function(e){
-            if(isDragging){
-                const rect = canvas.getBoundingClientRect();
-                const mouseX = e.clientX - rect.left;
-                const mouseY = e.clientY - rect.top;
+        canvas.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
 
-                ctx.lineWidth = 3;
-                ctx.lineCap = 'round';
-                ctx.strokeStyle = 'black';
+            const rect = canvas.getBoundingClientRect();
+            const mouseX = e.clientX - rect.left;
+            const mouseY = e.clientY - rect.top;
 
-                ctx.lineTo(mouseX, mouseY);
-                ctx.stroke();
-            }
+            ctx.lineWidth = line.thickness;
+            ctx.lineCap = line.penTip;
+            ctx.strokeStyle = line.color;
+
+            ctx.lineTo(mouseX, mouseY);
+            ctx.stroke();
         });
 
-        canvas.addEventListener('mouseup',function(){
+        canvas.addEventListener('mouseup', () => {
             isDragging = false;
-        })
+        });
+
+
+        // -----------------------------
+        // UI Controls
+        // -----------------------------
+        document.getElementById('colorPicker').addEventListener('change', (e) => {
+            line.color = e.target.value;
+        });
+
+        document.getElementById('sizeSlider').addEventListener('input', (e) => {
+            line.thickness = e.target.value;
+        });
+
+        document.getElementById('saveBtn').addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'my_drawing.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        });
+
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            setBackgroundColor(); 
+        });
+
+
+        // -----------------------------
+        // Helper Functions
+        // -----------------------------
+        function setBackgroundColor() {
+            ctx.fillStyle = "green";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
     </script>
-    
+
 </body>
 </html>
