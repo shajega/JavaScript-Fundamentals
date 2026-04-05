@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {border-collapse: collapse;}
+        td {border:1px solid black};
+    </style>
+</head>
+<body>
+    <button id="getPic">Get new picture</button>
+    <table id="pictures">
+        <tbody></tbody>
+    </table>
+    <script>
+        document.getElementById("getPic").addEventListener('click',function(){
+            fetch("http://universities.hipolabs.com/search?country=Canada")
+            .then((response)=>{
+                if(!response.ok){
+                    throw new Error("Network Error!");
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                displayData(data);
+            })
+        });
+        function displayData(data){
+            let tbody = document.getElementById("pictures").getElementsByTagName('tbody')[0];
+            tbody.innerHTML = '';
+            data.forEach(element => {
+                tbody.innerHTML += `<tr>
+                        <td>${element['country']}</td>
+                        <td>${element['state-province']}</td>
+                        <td>${element['name']}</td>
+                        <td>${element['web_pages'][0]}</td>
+                    </tr>`
+            });
+        }
+    </script>
+</body>
+</html>
